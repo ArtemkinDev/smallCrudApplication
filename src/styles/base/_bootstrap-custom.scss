@@ -1,0 +1,167 @@
+// custom variables and override bootstrap variables
+
+$grid-gutter-width: 30px;
+$container-large-desktop:      (1170px + $grid-gutter-width) !default;
+
+$body-bg: #fbfbfb;
+$gray-dark:              #4f4f4f;
+$gray:              #898790;
+$gray-light: #adadad;
+
+$white:      #fff;
+$border-color: #e8e8e8;
+
+$brand-primary:         #ff4b4f; // #337ab7
+$brand-success:         #5cb85c;
+$brand-info:            #2161d3;
+$brand-warning:         #ff8900;
+$brand-danger:          #ff0031;
+
+$font-family-sans-serif: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+
+
+$font-size-h1:            48px;
+$font-size-h2:            34px;
+$font-size-h3:            24px;
+$font-size-h4:            18px;
+$font-size-h5:            13px;
+$font-size-h6:            12px;
+
+$font-size-base:          16px;
+$font-size-small:         14px;
+$line-height-base:        1.38; // 22
+
+$text-color:            $gray-dark;
+
+$btn-font-weight:                700;
+
+$btn-default-color:              $brand-primary;
+$btn-default-bg:                 transparent;
+$btn-default-border:             $brand-primary;
+
+$btn-primary-border:             #c70027;
+
+$btn-success-border:             #53a953;
+
+$btn-info-border:                #3000be;
+
+$btn-warning-border:             #e77c00;
+
+$btn-danger-border:              #c70027;
+
+// Allows for customizing button radius independently from global border radius
+$btn-border-radius-base:         3px;
+$btn-border-radius-large:        3px;
+$btn-border-radius-small:        3px;
+
+
+//== Navbar
+
+$navbar-height:                    auto;
+$navbar-margin-bottom:             0;
+$navbar-border-radius:             0;
+$navbar-padding-horizontal:        0;
+$navbar-padding-vertical:          0;
+$navbar-collapse-max-height:       800px !default;
+
+$navbar-default-color:            $text-color;
+$navbar-default-bg:                #fff;
+$navbar-default-border:            transparent;
+
+// Navbar links
+$navbar-default-link-color:               $text-color;
+$navbar-default-link-hover-color:          $brand-primary;
+$navbar-default-link-hover-bg:             transparent ;
+$navbar-default-link-active-color:         $brand-primary;
+$navbar-default-link-active-bg:            transparent;
+$navbar-default-link-disabled-color:       #ccc !default;
+$navbar-default-link-disabled-bg:          transparent;
+
+// Navbar brand label
+$navbar-default-brand-color:               $navbar-default-link-color !default;
+$navbar-default-brand-hover-color:         darken($navbar-default-brand-color, 10%) !default;
+$navbar-default-brand-hover-bg:            transparent !default;
+
+// Navbar toggle
+$navbar-default-toggle-hover-bg:           #ddd !default;
+$navbar-default-toggle-icon-bar-bg:        #888 !default;
+$navbar-default-toggle-border-color:       #ddd !default;
+
+//== Form states and alerts
+
+$state-success-text:             #27b305;
+$state-success-bg:               #daf1d6;
+$state-success-border:           $brand-success;
+
+$state-info-text:                #7aa3ec;
+$state-info-bg:                  #cbebfb;
+$state-info-border:              #7aa3ec;
+
+$state-warning-text:             $brand-warning;
+$state-warning-bg:               #ffefbc;
+$state-warning-border:           $brand-warning;
+
+$state-danger-text:              $brand-primary;
+$state-danger-bg:                #f9c8c7;
+$state-danger-border:            $brand-primary;
+
+
+//== Breadcrumbs
+
+$breadcrumb-padding-vertical:   7px;
+$breadcrumb-bg:                 #fff;
+$breadcrumb-color:              $gray;
+$breadcrumb-active-color:       #4f4f4f;
+
+
+//== Progress bars
+
+$progress-bg:                 rgba(255, 75, 79, 0.15);
+$progress-border-radius:      0;
+
+
+//== Pagination
+
+$pagination-color:                    $text-color;
+$pagination-bg:                        transparent;
+$pagination-border:                    transparent;
+
+$pagination-hover-color:               #fff;
+$pagination-hover-bg:                  $brand-primary;
+
+//== Modals
+
+$modal-inner-padding:         15px !default;
+$modal-title-padding:         15px !default;
+$modal-backdrop-bg:           #07001c;
+$modal-backdrop-opacity:      .7;
+$modal-lg:                    595px;
+$modal-md:                    595px;
+
+
+//== Forms
+
+$input-color:                    $text-color;
+$input-border:                   $border-color;
+$input-border-focus:             $border-color;
+$input-color-placeholder:        #adadad;
+$input-height-base:              60px;
+$form-group-margin-bottom:       20px;
+
+//== Thumbnails
+$thumbnail-padding:           0;
+$thumbnail-bg:                $white;
+$thumbnail-border:            $border-color;
+$thumbnail-caption-padding:   11px 18px 11px;
+
+//== List group
+$list-group-border:             $border-color;
+$list-group-active-color:       $text-color;
+$list-group-active-bg:          #faf9fd;
+$list-group-active-border:      $border-color;
+$list-group-active-text-color:   $text-color;
+
+
+//== Badges
+
+$badge-border-radius:        11px;

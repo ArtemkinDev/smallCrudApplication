@@ -25,6 +25,5 @@
     "allowUnreachableCode": true,
     "strictNullChecks": true,
     "alwaysStrict": true,
-    "strictFunctionTypes": true
   }
 }
