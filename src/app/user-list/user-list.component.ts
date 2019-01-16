@@ -1,12 +1,43 @@
-import { Component } from '@angular/core';
+import { UserModel } from './../../common/models/user/user.model';
+import { UserService } from './../../common/services/user.service';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
-export class UserListComponent {
+export class UserListComponent implements OnDestroy {
 
-  constructor() { }
+  public userList: UserModel[];
+  public getUsersListSubscription: Subscription;
+  public deletUserListSubscription: Subscription;
+
+  constructor(private userService: UserService) {
+    this.userService.getUsersListFromServer().subscribe(
+      (u: UserModel[]) => {
+      this.userList = u;
+      },
+      (error) => console.log(error)
+    );
+  }
+
+  public deleteUser(id: string): void {
+    this.userService.deleteUser(id).subscribe(
+      (u: UserModel[]) => {
+        this.userList = u;
+      },
+      (error) => console.log(error)
+    );
+  }
+
+  public ngOnDestroy(): void {
+    this.getUsersListSubscription.unsubscribe();
+
+    if (!!this.deletUserListSubscription) {
+      this.deletUserListSubscription.unsubscribe();
+    }
+  }
 
 }

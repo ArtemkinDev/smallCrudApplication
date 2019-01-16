@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="user-list-wrapper">
+  <div class="user-list-wrapper" *ngIf="!!userList">
     <div class="table-title">
       <div class="d-block d-sm-flex justify-content-between align-items-center">
         <h2 class="text-white">User <b>List</b></h2>
@@ -7,60 +7,38 @@
       </div>
     </div>
     <ul class="table-content list-unstyled">
-      <li class="user-item d-flex flex-wrap align-items-center font-weight-bolder bg-white border-bottom">
-        <div class="d-none d-md-block col-md-1 pt-3 pb-3">1</div>
+      <li
+        class="user-item d-flex flex-wrap align-items-center font-weight-bolder bg-white border-bottom"
+        *ngFor="let user of userList; let i = index;"
+        >
+        <div class="d-none d-md-block col-md-1 pt-3 pb-3">{{ i + 1 }}</div>
         <div class="col-12 col-md-3 pt-3 pb-3 user-images">
-          <a routerLink="/user-list/1" class="d-flex align-items-center">
-            <img src="http://placehold.it/32x32" class="avatar" alt="Avatar">
+          <a [routerLink]="'/user-list/' + user.id" class="d-flex align-items-center">
+            <img [src]="user.picture" class="avatar" alt="Avatar">
             <div class="user-info">
-              <span class="d-block user-name">Name name</span>
-              <span class="d-block user-company">Company</span>
+              <span class="d-block user-name">{{ user.name }}</span>
+              <span class="d-block user-company">{{ user.company }}</span>
             </div>
           </a>
         </div>
         <div class="col-12 col-md-4 pt-3 pb-3 d-flex align-items-center">
           <i class="fa fa-envelope fa-lg mr-2" aria-hidden="true"></i>
-          <a href="mailto: kimberlychavez@voratak.com">kimberlychavez@voratak.com</a>
+          <a [href]="'mailto:' + user.email" target="_self">{{ user.email }}</a>
         </div>
-        <div class="col-6 col-md-2 pt-3 pb-3"><span class="user-state user-state--active">Active</span></div>
-        <div class="col-6 col-md-2 pt-3 pb-3 delete-btn"><span class="fa-container-primary"><i class="fa fa-trash-o fa-sm" aria-hidden="true"></i></span></div>
-      </li>
-      <li class="user-item d-flex flex-wrap align-items-center font-weight-bolder bg-white border-bottom">
-        <div class="d-none d-md-block col-md-1 pt-3 pb-3">1</div>
-        <div class="col-12 col-md-3 pt-3 pb-3 user-images">
-          <a href="" class="d-flex align-items-center">
-            <img src="http://placehold.it/32x32" class="avatar" alt="Avatar">
-            <div class="user-info">
-              <span class="d-block user-name">Name name</span>
-              <span class="d-block user-company">Company</span>
-            </div>
-          </a>
+        <div class="col-6 col-md-2 pt-3 pb-3">
+          <span class="user-state user-state--active" *ngIf="user.isActive">Active</span>
+          <span class="user-state user-state--inactive" *ngIf="!user.isActive">Inactive</span>
         </div>
-        <div class="col-12 col-md-4 pt-3 pb-3 d-flex align-items-center">
-          <i class="fa fa-envelope fa-lg mr-2" aria-hidden="true"></i>
-          <a href="mailto: kimberlychavez@voratak.com">kimberlychavez@voratak.com</a>
+        <div class="col-6 col-md-2 pt-3 pb-3 delete-btn">
+          <span
+            class="fa-container-primary"
+            (click) = "deleteUser(user.id)"
+          >
+            <i class="fa fa-trash-o fa-sm" aria-hidden="true"></i>
+          </span>
         </div>
-        <div class="col-6 col-md-2 pt-3 pb-3"><span class="user-state user-state--active">Active</span></div>
-        <div class="col-6 col-md-2 pt-3 pb-3 delete-btn"><span class="fa-container-primary"><i class="fa fa-trash-o fa-sm" aria-hidden="true"></i></span></div>
-      </li>
-      <li class="user-item d-flex flex-wrap align-items-center font-weight-bolder bg-white border-bottom">
-        <div class="d-none d-md-block col-md-1 pt-3 pb-3">1</div>
-        <div class="col-12 col-md-3 pt-3 pb-3 user-images">
-          <a href="" class="d-flex align-items-center">
-            <img src="http://placehold.it/32x32" class="avatar" alt="Avatar">
-            <div class="user-info">
-              <span class="d-block user-name">Name name</span>
-              <span class="d-block user-company">Company</span>
-            </div>
-          </a>
-        </div>
-        <div class="col-12 col-md-4 pt-3 pb-3 d-flex align-items-center">
-          <i class="fa fa-envelope fa-lg mr-2" aria-hidden="true"></i>
-          <a href="mailto: kimberlychavez@voratak.com">kimberlychavez@voratak.com</a>
-        </div>
-        <div class="col-6 col-md-2 pt-3 pb-3"><span class="user-state user-state--inactive">Inactive</span></div>
-        <div class="col-6 col-md-2 pt-3 pb-3 delete-btn"><span class="fa-container-primary"><i class="fa fa-trash-o fa-sm" aria-hidden="true"></i></span></div>
       </li>
     </ul>
+    <p *ngIf="userList.length === 0">User list is empty!</p>
   </div>
 </div>
