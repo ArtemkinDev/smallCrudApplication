@@ -1,167 +1,231 @@
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1200px
+);
+
+@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+@include _assert-starts-at-zero($grid-breakpoints);
+
+@include _assert-ascending($container-max-widths, "$container-max-widths");
+
+$white:  #fff;
+$gray-100: #f9f9f9;
+$gray-200: #e9e9e9;
+$gray-300: #d9d9d9;
+$gray-400: #c0c0c0;
+$gray-500: #adb5bd !default;
+$gray-600: #9b9b9b;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+
+$blue:    #4cb8db;
+$indigo:  #4a90e2;
+$purple:  #6f42c1 !default;
+$pink:    #e83e8c !default;
+$red:     #e3000b;
+$orange:  #ee7555;
+$yellow:  #ffc107 !default;
+$green:   #009c49;
+$teal:    #20c997 !default;
+$cyan:    #17a2b8 !default;
+
+$colors: ();
+$colors: map-merge((
+  "blue":       $blue,
+  "indigo":     $indigo,
+  "purple":     $purple,
+  "pink":       $pink,
+  "red":        $red,
+  "orange":     $orange,
+  "yellow":     $yellow,
+  "green":      $green,
+  "teal":       $teal,
+  "cyan":       $cyan,
+  "white":      $white,
+  "gray":       $gray-600,
+  "gray-dark":  $gray-800
+), $colors);
+
+$primary:       $red;
+$secondary:     $gray-600;
+$success:       $green;
+$info:          $indigo;
+$warning:       $orange;
+$danger:        $red;
+$light:         $gray-100;
+$dark:          $gray-800 !default;
+
+$theme-colors: ();
+$theme-colors: map-merge((
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+), $theme-colors);
+
+$spacer: 1rem;
+$spacers: ();
+$spacers: map-merge((
+	0: 0,
+	1: ($spacer * .25),
+	2: ($spacer * .5),
+	3: $spacer,
+	4: ($spacer * 1.5),
+	5: ($spacer * 3),
+	6: ($spacer * 4.5),
+	7: ($spacer * 6),
+	8: ($spacer * 7.5),
+	9: ($spacer * 9),
+	10: ($spacer * 10.5)
+), $spacers);
+
+$base-min-width: 320px;
+
+// This is the default html and body font-size for the base rem value.
+$rem-base: 16px;
+
 // custom variables and override bootstrap variables
 
-$grid-gutter-width: 30px;
-$container-large-desktop:      (1170px + $grid-gutter-width) !default;
+$body-bg: #fff;
+$black:  #4a4a4a;
 
-$body-bg: #fbfbfb;
-$gray-dark:              #4f4f4f;
-$gray:              #898790;
-$gray-light: #adadad;
+/*
+* Font family
+*/
+$font-family-base: 'SourceSansPro', Arial, sans-serif;
+$elalba: 'elalba', Arial, sans-serif;
 
-$white:      #fff;
-$border-color: #e8e8e8;
+$font-weight-light:           300;
+$font-weight-normal:          400;
+$font-weight-semibold:        600;
+$font-weight-bold:            700;
+$font-weight-bold:            900;
 
-$brand-primary:         #ff4b4f; // #337ab7
-$brand-success:         #5cb85c;
-$brand-info:            #2161d3;
-$brand-warning:         #ff8900;
-$brand-danger:          #ff0031;
+/*
+* Body reset
+*/
+$line-height-base:  1.167;
+$body-bg: $white;
+$body-color: $black;
+$link-color: $red;
 
-$font-family-sans-serif: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+// Style anchor elements.
+$link-color:                $black;
+$link-hover-decoration:     none;
+$link-hover-color:          $primary;
 
+// typography variables
 
-$font-size-h1:            48px;
-$font-size-h2:            34px;
-$font-size-h3:            24px;
-$font-size-h4:            18px;
-$font-size-h5:            13px;
-$font-size-h6:            12px;
+$h1-font-size:                $font-size-base * 1.875; //30px
+$h2-font-size:                $font-size-base * 1.75; // 28px
+$h3-font-size:                $font-size-base * 1.625; // 26px
+$h4-font-size:                $font-size-base * 1.25; //20px
+$h5-font-size:                $font-size-base * 1.125; // 18px
+$h6-font-size:                $font-size-base;
 
-$font-size-base:          16px;
-$font-size-small:         14px;
-$line-height-base:        1.38; // 22
+$border-radius:               0;
+$border-color:                $gray-200;
 
-$text-color:            $gray-dark;
+$blockquote-font-size: 1rem;
 
-$btn-font-weight:                700;
+// Tables
+//
+// Customizes the `.table` component with basic values, each used across all table variations.
 
-$btn-default-color:              $brand-primary;
-$btn-default-bg:                 transparent;
-$btn-default-border:             $brand-primary;
+$table-cell-padding:          1.15rem 1.25rem;
+$table-cell-padding-sm:       0.75rem 1rem;
 
-$btn-primary-border:             #c70027;
+$table-bg:                    transparent;
 
-$btn-success-border:             #53a953;
+$table-border-width:          1px;
+$table-border-color:          $gray-300;
 
-$btn-info-border:                #3000be;
+$table-head-color:            $gray-300;
 
-$btn-warning-border:             #e77c00;
+// Breadcrumbs
 
-$btn-danger-border:              #c70027;
+$breadcrumb-padding-y:              0rem;
+$breadcrumb-padding-x:              0rem;
+$breadcrumb-item-padding:           1rem;
 
-// Allows for customizing button radius independently from global border radius
-$btn-border-radius-base:         3px;
-$btn-border-radius-large:        3px;
-$btn-border-radius-small:        3px;
+$breadcrumb-margin-bottom:          0rem;
 
+$breadcrumb-bg:                     transparent;
+$breadcrumb-divider-color:          $white;
+$breadcrumb-active-color:           $white;
+$breadcrumb-divider:                quote("\e91e");
 
-//== Navbar
+$breadcrumb-border-radius:          none;
 
-$navbar-height:                    auto;
-$navbar-margin-bottom:             0;
-$navbar-border-radius:             0;
-$navbar-padding-horizontal:        0;
-$navbar-padding-vertical:          0;
-$navbar-collapse-max-height:       800px !default;
+$h1-font-size:                $font-size-base * 1.875;
 
-$navbar-default-color:            $text-color;
-$navbar-default-bg:                #fff;
-$navbar-default-border:            transparent;
+// Buttons + Forms
+//
+// Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
 
-// Navbar links
-$navbar-default-link-color:               $text-color;
-$navbar-default-link-hover-color:          $brand-primary;
-$navbar-default-link-hover-bg:             transparent ;
-$navbar-default-link-active-color:         $brand-primary;
-$navbar-default-link-active-bg:            transparent;
-$navbar-default-link-disabled-color:       #ccc !default;
-$navbar-default-link-disabled-bg:          transparent;
+$input-btn-padding-y:         .5rem;
+$input-btn-padding-x:         .75rem;
+$input-btn-line-height:       $line-height-base;
 
-// Navbar brand label
-$navbar-default-brand-color:               $navbar-default-link-color !default;
-$navbar-default-brand-hover-color:         darken($navbar-default-brand-color, 10%) !default;
-$navbar-default-brand-hover-bg:            transparent !default;
+$input-btn-border-width:      $border-width;
 
-// Navbar toggle
-$navbar-default-toggle-hover-bg:           #ddd !default;
-$navbar-default-toggle-icon-bar-bg:        #888 !default;
-$navbar-default-toggle-border-color:       #ddd !default;
+$input-padding-y:                       $input-btn-padding-y;
+$input-padding-x:                       $input-btn-padding-x;
+$input-line-height:                     $input-btn-line-height;
 
-//== Form states and alerts
+$input-color:                           $black;
+$input-border-color:                    $gray-300;
+$input-border-width:                    $input-btn-border-width;
+$input-box-shadow:                      none;
 
-$state-success-text:             #27b305;
-$state-success-bg:               #daf1d6;
-$state-success-border:           $brand-success;
+$input-btn-focus-width:       .2rem;
+$input-btn-focus-color:       rgba($input-border-color, .25);
+$input-btn-focus-box-shadow:  0 0 0 $input-btn-focus-width $input-btn-focus-color;
 
-$state-info-text:                #7aa3ec;
-$state-info-bg:                  #cbebfb;
-$state-info-border:              #7aa3ec;
+$input-focus-border-color:              $input-border-color;
+$input-focus-box-shadow:                $input-btn-focus-box-shadow;
+$btn-focus-box-shadow:                  $input-btn-focus-box-shadow;
 
-$state-warning-text:             $brand-warning;
-$state-warning-bg:               #ffefbc;
-$state-warning-border:           $brand-warning;
+$input-border-radius:                   0;
 
-$state-danger-text:              $brand-primary;
-$state-danger-bg:                #f9c8c7;
-$state-danger-border:            $brand-primary;
+$input-placeholder-color:               $gray-400;
 
+$custom-select-padding-y:           .5rem;
+$custom-select-padding-x:           .75rem;
+$custom-select-height:              $input-height !default;
+$custom-select-indicator-padding:   .75rem;
+$custom-select-line-height:         $input-btn-line-height;
+$custom-select-color:               $black;
+$custom-select-disabled-color:      $gray-600 !default;
+$custom-select-bg:                  $input-bg !default;
+$custom-select-disabled-bg:         $gray-200 !default;
+$custom-select-bg-size:             8px 10px !default; // In pixels because image dimensions
+$custom-select-indicator-color:     $gray-800 !default;
+$custom-select-indicator:           none;
+$custom-select-border-width:        $input-btn-border-width;
+$custom-select-border-color:        $input-border-color;
+$custom-select-border-radius:       $border-radius;
+$custom-select-box-shadow:          none;
 
-//== Breadcrumbs
-
-$breadcrumb-padding-vertical:   7px;
-$breadcrumb-bg:                 #fff;
-$breadcrumb-color:              $gray;
-$breadcrumb-active-color:       #4f4f4f;
-
-
-//== Progress bars
-
-$progress-bg:                 rgba(255, 75, 79, 0.15);
-$progress-border-radius:      0;
-
-
-//== Pagination
-
-$pagination-color:                    $text-color;
-$pagination-bg:                        transparent;
-$pagination-border:                    transparent;
-
-$pagination-hover-color:               #fff;
-$pagination-hover-bg:                  $brand-primary;
-
-//== Modals
-
-$modal-inner-padding:         15px !default;
-$modal-title-padding:         15px !default;
-$modal-backdrop-bg:           #07001c;
-$modal-backdrop-opacity:      .7;
-$modal-lg:                    595px;
-$modal-md:                    595px;
+$custom-select-focus-border-color:  $input-focus-border-color;
+$custom-select-focus-width:         $input-btn-focus-width;
+$custom-select-focus-box-shadow:    0 0 0 $custom-select-focus-width rgba($custom-select-focus-border-color, .5);
 
 
-//== Forms
+// Navs
 
-$input-color:                    $text-color;
-$input-border:                   $border-color;
-$input-border-focus:             $border-color;
-$input-color-placeholder:        #adadad;
-$input-height-base:              60px;
-$form-group-margin-bottom:       20px;
-
-//== Thumbnails
-$thumbnail-padding:           0;
-$thumbnail-bg:                $white;
-$thumbnail-border:            $border-color;
-$thumbnail-caption-padding:   11px 18px 11px;
-
-//== List group
-$list-group-border:             $border-color;
-$list-group-active-color:       $text-color;
-$list-group-active-bg:          #faf9fd;
-$list-group-active-border:      $border-color;
-$list-group-active-text-color:   $text-color;
-
-
-//== Badges
-
-$badge-border-radius:        11px;
+$nav-tabs-border-color:             $gray-300;
+$nav-tabs-border-width:             $border-width;
+$nav-tabs-border-radius:            10px;
+$nav-tabs-link-hover-border-color:  transparent;
+$nav-tabs-link-active-color:        $red;
+$nav-tabs-link-active-bg:           transparent;
+$nav-tabs-link-active-border-color: transparent;

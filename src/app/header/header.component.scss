@@ -1,0 +1,8 @@
+@import './../../styles/base/bootstrap';
+
+:host {
+  display: block;
+  .header {
+    border-bottom: 1px solid $info;
+  }
+}

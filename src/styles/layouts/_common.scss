@@ -1,0 +1,41 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+	min-width: $base-min-width;
+}
+
+.wrapper {
+	display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content {
+  flex: 1 0 auto;
+  background-color: $gray-100;
+}
+.footer {
+  flex: 0 0 auto;
+}
+
+.fa-container-primary {
+  width: 25px;
+  height: 25px;
+  background-color: $primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $white;
+  border-radius: 50%;
+  font-style: normal;
+  font-size: 14px;
+  cursor: pointer;
+  @extend %transition;
+
+  &:hover {
+    background-color: darken($primary, 15%);
+  }
+}

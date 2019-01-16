@@ -1,0 +1,88 @@
+.user-profile {
+  h1 {
+    color: $success;
+    margin: 15px 0;
+  }
+  .user-profile-wrapper {
+    background: #FFFFFF;
+    box-shadow: 1px 1px 2px 0 #CCCCCC;
+    margin-bottom: 16px;
+    padding: 20px;
+  }
+
+  .profile-header {
+    margin-bottom: 25px;
+    h3 {
+      border-bottom: 1px solid #C2C2C2;
+      padding-left: 5px;
+      margin-bottom: 20px;
+      span {
+        border-bottom: 2px solid #C2C2C2;
+        display: inline-block;
+        padding: 0 5px 5px;
+      }
+    }
+  }
+
+  .profile-user-info {
+    margin-bottom: 40px;
+    .profile-user-details {
+      position: relative;
+      padding: 10px 0;
+
+      @include media('≥tablet') {
+        padding: 4px 0;
+      }
+    }
+    .profile-user-details-image {
+      max-width: 150px;
+
+      @include media('≥tablet') {
+        text-align: right;
+      }
+
+      img {
+        max-width: 50px;
+      }
+    }
+    .profile-user-details-label {
+      font-weight: bold;
+      margin-bottom: 5px;
+
+      @include media('≥tablet') {
+        min-width: 150px;
+        margin-right: 25px;
+        text-align: right;
+        margin-bottom: 0;
+      }
+    }
+    .profile-user-details-value {
+      flex: 1;
+    }
+
+    .tags-block {
+      h4 {
+        font-size: 1rem;
+        font-weight: bold;
+
+        @include media('≥tablet') {
+          font-size: 1.25rem;
+        }
+      }
+      .tags-item {
+        padding: 5px 10px;
+        background-color: $info;
+        border-radius: 5px;
+        color: $white;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        line-height: 1;
+        margin-bottom: 10px;
+
+        &:not(:last-child) {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}

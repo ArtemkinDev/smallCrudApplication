@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
 import { ROUTES } from '../common/const/routes.const';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
    declarations: [
@@ -21,7 +21,8 @@ import { FooterComponent } from './footer/footer.component';
    imports: [
       BrowserModule,
       RouterModule.forRoot(ROUTES),
-      UserListModule
+      UserListModule,
+      AngularFontAwesomeModule
    ],
    providers: [],
    bootstrap: [

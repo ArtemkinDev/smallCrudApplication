@@ -1,0 +1,57 @@
+.user-list-wrapper {
+  padding: 100px 0;
+  .table-title {
+    padding: 20px 15px;
+    background-color: $info;
+
+    h2 {
+      @include media('≥tablet') {
+        margin-bottom: 0;
+      }
+    }
+
+    .btn {
+      i {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .user-item {
+    font-size: 0.8rem;
+    .user-images {
+      img {
+        min-width: 32px;
+        max-width: 32px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      .user-info {
+        .user-company {
+          font-size: 0.7rem;
+          font-style: italic;
+        }
+      }
+    }
+
+    .user-state {
+      display: inline-block;
+      padding: 2px 4px;
+      color: $white;
+      font-size: 0.75rem;
+
+      &--active {
+        background-color: $green;
+      }
+
+      &--inactive {
+        background-color: $gray-700;
+      }
+    }
+
+    .delete-btn {
+
+    }
+  }
+}
