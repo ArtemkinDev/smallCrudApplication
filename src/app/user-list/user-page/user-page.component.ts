@@ -16,7 +16,7 @@ export class UserPageComponent implements OnDestroy {
   public routerSubscription: Subscription;
 
   constructor(private router: ActivatedRoute, private userService: UserService) {
-    this.router.params.subscribe(
+    this.routerSubscription = this.router.params.subscribe(
       (param: Params) => {
         const id: string = param.id;
 

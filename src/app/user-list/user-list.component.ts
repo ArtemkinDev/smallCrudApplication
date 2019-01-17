@@ -15,7 +15,7 @@ export class UserListComponent implements OnDestroy {
   public deletUserListSubscription: Subscription;
 
   constructor(private userService: UserService) {
-    this.userService.getUsersListFromServer().subscribe(
+    this.getUsersListSubscription = this.userService.getUsersListFromServer().subscribe(
       (u: UserModel[]) => {
       this.userList = u;
       },
@@ -24,7 +24,7 @@ export class UserListComponent implements OnDestroy {
   }
 
   public deleteUser(id: string): void {
-    this.userService.deleteUser(id).subscribe(
+    this.deletUserListSubscription = this.userService.deleteUser(id).subscribe(
       (u: UserModel[]) => {
         this.userList = u;
       },
