@@ -1,17 +1,16 @@
 import { Component } from "@angular/core";
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal-custom.component.html',
   styleUrls: ['./modal-custom.component.scss'],
-  providers: [ NgbModal ]
 })
 
 export class ModalCustomComponent {
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbActiveModal) {}
 
-  open(content) {
-    this.modalService.open(content);
+  public close() {
+    this.modalService.close();
   }
 }

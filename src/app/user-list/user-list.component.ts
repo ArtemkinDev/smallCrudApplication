@@ -2,6 +2,8 @@ import { UserModel } from './../../common/models/user/user.model';
 import { UserService } from './../../common/services/user.service';
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalCustomComponent } from '../../common/shared/modal/modal-custom/modal-custom.component';
 
 @Component({
   selector: 'app-user-list',
@@ -14,7 +16,7 @@ export class UserListComponent implements OnDestroy {
   public getUsersListSubscription: Subscription;
   public deletUserListSubscription: Subscription;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private modalService: NgbModal) {
     this.getUsersListSubscription = this.userService.getUsersListFromServer().subscribe(
       (u: UserModel[]) => {
       this.userList = u;
@@ -30,6 +32,11 @@ export class UserListComponent implements OnDestroy {
       },
       (error) => console.log(error)
     );
+  }
+
+  public showModal(e: Event) {
+    e.preventDefault();
+    this.modalService.open(ModalCustomComponent);
   }
 
   public ngOnDestroy(): void {

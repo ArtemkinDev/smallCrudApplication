@@ -10,6 +10,9 @@ import { ModalCustomComponent } from './modal/modal-custom/modal-custom.componen
   declarations: [
     ModalCustomComponent
   ],
+  exports: [
+    ModalCustomComponent
+  ],
   providers: []
 })
 export class SharedModule { }
