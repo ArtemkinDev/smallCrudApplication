@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModalCustomComponent } from './modal/modal-custom/modal-custom.component';
+import { ModalService } from '../services/modal.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   imports: [
     CommonModule,
-    NgbModule
-  ],
-  declarations: [
-    ModalCustomComponent
+    NgbModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
-    ModalCustomComponent
+    ReactiveFormsModule
   ],
-  providers: []
+  providers: [ ModalService ],
 })
 export class SharedModule { }

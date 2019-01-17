@@ -6,9 +6,7 @@ import { KeyValueInterface } from './../interfaces/key-value.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { map } from 'rxjs/operators';
 import { Observer } from 'rxjs/Observer';
-import { BaseHelper } from '../helpers/base.helpers';
 
 @Injectable()
 
@@ -48,14 +46,13 @@ export class UserService {
   */
 
   public getUserById(id: string): Observable<UserModel> {
-    return this.http.get<KeyValueInterface<any>[]>(this.fake_URL).pipe(
-      map<KeyValueInterface<any>[], UserModel>(
-        (users: KeyValueInterface<any>[]) => {
-          const user: KeyValueInterface<any> = users.filter((u: KeyValueInterface<any>) => u._id === id)[0];
-          return UserHelper.CreateUserModelFromData(user);
-        }
-      )
-    );
+    return Observable.create((observer: Observer<UserModel>  ) => {
+
+      const userList: KeyValueInterface<any>[] = this.localstorage.get('userList');
+      const user: KeyValueInterface<any> =  userList.filter((u: KeyValueInterface<any>) => u.id === id)[0];
+
+      observer.next(UserHelper.CreateUserModelFromLocalStorage(user));
+    });
   }
 
   /**
@@ -81,9 +78,35 @@ export class UserService {
     });
   }
 
-  private updateLocalStorage(model: UserModel[]): void {
+
+  /**
+  * Create new user
+  * If we had a real API we must send post request and after that update localstorage or state
+  * @param { id: string }
+  * @return { Observable<UserModel[]> }
+  */
+
+  public createNewUser(newUser: UserModel): Observable<UserModel[]> {
+    return Observable.create((observer: Observer<UserModel[]>  ) => {
+
+      const userList: KeyValueInterface<any>[] = this.localstorage.get('userList');
+
+      const userListModel =  [...userList, newUser]
+              .map<UserModel>(
+                (u: KeyValueInterface<any>): UserModel => UserHelper.CreateUserModelFromLocalStorage(u)
+              );
+      // emit server response
+      setTimeout(() => {
+        observer.next(userListModel);
+        this.updateLocalStorage(userListModel);
+      }, 500);
+    });
+  }
+
+  private updateLocalStorage(users: UserModel[]): void {
+    const usersParse = users.map<KeyValueInterface<any>>((u: UserModel) => UserHelper.CreateObjectFromClass(u));
     this.localstorage.delete('userList');
-    this.localstorage.set('userList', BaseHelper.CreateObjectFromClass(model));
+    this.localstorage.set('userList', usersParse);
   }
 
 }

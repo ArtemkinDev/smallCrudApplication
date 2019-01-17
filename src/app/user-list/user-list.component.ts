@@ -1,9 +1,10 @@
+import { UserCreateFormComponent } from './user-create-form/create-form.component';
 import { UserModel } from './../../common/models/user/user.model';
 import { UserService } from './../../common/services/user.service';
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalCustomComponent } from '../../common/shared/modal/modal-custom/modal-custom.component';
+
+import { ModalService } from '../../common/services/modal.service';
 
 @Component({
   selector: 'app-user-list',
@@ -15,8 +16,9 @@ export class UserListComponent implements OnDestroy {
   public userList: UserModel[];
   public getUsersListSubscription: Subscription;
   public deletUserListSubscription: Subscription;
+  public modalServiceSubscription: Subscription;
 
-  constructor(private userService: UserService, private modalService: NgbModal) {
+  constructor(private userService: UserService, private modalService: ModalService) {
     this.getUsersListSubscription = this.userService.getUsersListFromServer().subscribe(
       (u: UserModel[]) => {
       this.userList = u;
@@ -36,7 +38,17 @@ export class UserListComponent implements OnDestroy {
 
   public showModal(e: Event) {
     e.preventDefault();
-    this.modalService.open(ModalCustomComponent);
+
+    const modal = this.modalService.openCustomModal(UserCreateFormComponent);
+    this.modalServiceSubscription = modal.componentInstance.newUserToSubscribers.subscribe((user: UserModel) => {
+        this.userService.createNewUser(user).subscribe(
+          (u: UserModel[]) => {
+            this.userList = u;
+            this.modalService.closeCustomModal();
+          },
+          (error) => console.log(error)
+        );
+    });
   }
 
   public ngOnDestroy(): void {
@@ -44,6 +56,10 @@ export class UserListComponent implements OnDestroy {
 
     if (!!this.deletUserListSubscription) {
       this.deletUserListSubscription.unsubscribe();
+    }
+
+    if (!!this.modalServiceSubscription) {
+      this.modalServiceSubscription.unsubscribe();
     }
   }
 

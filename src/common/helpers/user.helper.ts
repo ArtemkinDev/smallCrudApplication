@@ -39,18 +39,31 @@ export class UserHelper {
       id : data.id,
       guid : data.guid,
       isActive : data.isActive,
-      balance : data.balance,
+      balance : Number(data.balance),
       picture : data.picture,
-      age : data.age,
+      age : Number(data.age),
       name : data.name,
       company : data.company,
       email : data.email,
       phone : data.phone,
       address : data.address,
       about : data.about,
-      registered : data.registered,
+      registered : new Date(data.registered),
       tags : data.tags,
     });
+  }
+
+  /**
+  * create JsObject from UserModel
+  * @param { UserModel }
+  * @return { Object }
+  */
+
+  public static CreateObjectFromClass(model: UserModel): KeyValueInterface<any> {
+    const registered = model.registered.toISOString();
+    const parsedModel = {...model, registered};
+
+    return parsedModel;
   }
 
   /**

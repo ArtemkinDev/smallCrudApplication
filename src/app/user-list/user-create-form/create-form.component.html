@@ -1,0 +1,74 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Create new user</h4>
+</div>
+<div class="modal-body">
+  <form class="form-component" [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="user-name">User Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="user-name"
+        placeholder="Gomer Simpson"
+        aria-label="Username"
+        aria-describedby="addon-wrapping"
+        formControlName="username"
+      >
+      <div *ngIf="submit && createUserForm.get('username')?.errors">
+        <small id="emailHelp" class="form-text  text-danger" *ngIf="createUserForm.get('username')?.hasError('required')">
+          Username is required
+        </small>
+        <small id="emailHelp" class="form-text  text-danger" *ngIf="createUserForm.get('username')?.hasError('minlength')">
+          Username must be at least 6 characters
+        </small>
+        <small id="emailHelp" class="form-text  text-danger" *ngIf="createUserForm.get('username')?.hasError('maxlength')">
+          Username must be less then 12 characters
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="user-email">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        id="user-email"
+        placeholder="mail@email.com"
+        aria-label="Email"
+        aria-describedby="addon-wrapping"
+        formControlName="email"
+      >
+      <div *ngIf="submit && createUserForm.get('email')?.errors">
+        <small id="emailHelp" class="form-text  text-danger" *ngIf="createUserForm.get('email')?.hasError('invalidEmail')">
+          Email is invalid. Must be email@mail.com
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="user-name">Company</label>
+      <input
+        type="text"
+        class="form-control"
+        id="user-name"
+        placeholder="Company"
+        aria-label="Company"
+        aria-describedby="addon-wrapping"
+        formControlName="company"
+      >
+      <div *ngIf="submit && createUserForm.get('company')?.errors">
+        <small id="emailHelp" class="form-text  text-danger" *ngIf="createUserForm.get('company')?.hasError('required')">
+          Company is required
+        </small>
+        <small id="emailHelp" class="form-text  text-danger" *ngIf="createUserForm.get('company')?.hasError('minlength')">
+          Company must be at least 6 characters
+        </small>
+        <small id="emailHelp" class="form-text  text-danger" *ngIf="createUserForm.get('company')?.hasError('maxlength')">
+          Company must be less then 12 characters
+        </small>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-success" (click) = "onSubmit()">Create</button>
+  <button type="button" class="btn btn-danger" (click) = "close()">Cancel</button>
+</div>
