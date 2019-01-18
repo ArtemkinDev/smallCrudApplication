@@ -39,12 +39,21 @@ export class UserListComponent implements OnDestroy {
   public showModal(e: Event) {
     e.preventDefault();
 
-    const modal = this.modalService.openCustomModal(UserCreateFormComponent);
+    const modal = this.modalService.openCustomModal(UserCreateFormComponent, 'user-form-modal');
+
     this.modalServiceSubscription = modal.componentInstance.newUserToSubscribers.subscribe((user: UserModel) => {
         this.userService.createNewUser(user).subscribe(
           (u: UserModel[]) => {
+            const successMsg = {
+              title: 'Success',
+              body: 'User created!'
+            }
             this.userList = u;
-            this.modalService.closeCustomModal();
+            this.modalService.closeCustomModal('user-form-modal');
+            setTimeout(() => {
+              this.modalService.openSuccessModal('sucess1', successMsg);
+            }, 500);
+
           },
           (error) => console.log(error)
         );

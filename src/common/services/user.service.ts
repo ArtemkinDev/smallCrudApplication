@@ -31,9 +31,10 @@ export class UserService {
             );
 
             observer.next(dataModel);
+            observer.complete();
             this.updateLocalStorage(dataModel);
           },
-          (error: HttpErrorResponse): void => console.log(error),
+          (error: HttpErrorResponse): void => observer.error(error),
           (): void => observer.complete()
       );
     });
@@ -52,6 +53,7 @@ export class UserService {
       const user: KeyValueInterface<any> =  userList.filter((u: KeyValueInterface<any>) => u.id === id)[0];
 
       observer.next(UserHelper.CreateUserModelFromLocalStorage(user));
+      observer.complete();
     });
   }
 
@@ -74,6 +76,7 @@ export class UserService {
               );
 
       observer.next(userListModel);
+      observer.complete();
       this.updateLocalStorage(userListModel);
     });
   }
@@ -98,6 +101,7 @@ export class UserService {
       // emit server response
       setTimeout(() => {
         observer.next(userListModel);
+        observer.complete();
         this.updateLocalStorage(userListModel);
       }, 500);
     });

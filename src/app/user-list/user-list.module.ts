@@ -5,6 +5,7 @@ import { UserListComponent } from './user-list.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../common/shared/shared.module';
+import { UserItemCardComponent } from './user-item-card/user-item-card.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { SharedModule } from '../../common/shared/shared.module';
   declarations: [
     UserListComponent,
     UserPageComponent,
-    UserCreateFormComponent
+    UserCreateFormComponent,
+    UserItemCardComponent
   ],
   entryComponents: [
     UserCreateFormComponent,

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalService } from '../services/modal.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SuccessModalComponent } from './modal/success-modal/success-modal.component';
 
 @NgModule({
   imports: [
@@ -11,8 +12,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
+  declarations: [
+    SuccessModalComponent
+  ],
   exports: [
     ReactiveFormsModule
+  ],
+  entryComponents: [
+    SuccessModalComponent,
   ],
   providers: [ ModalService ],
 })

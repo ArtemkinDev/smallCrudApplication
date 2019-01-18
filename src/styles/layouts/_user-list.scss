@@ -52,6 +52,30 @@
 
     .delete-btn {
 
+      .fa-container-primary {
+        width: auto;
+        max-width: 150px;
+        height: auto;
+        border-radius: 5px;
+        padding: 7px 10px;
+
+        @include media('≥tablet') {
+          width: 25px;
+          height: 25px;
+          max-width: 25px;
+          border-radius: 50%;
+          padding: 0;
+        }
+      }
+
+      .delete-btn__mobile-text {
+        display: inline-block;
+        margin-left: 5px;
+
+        @include media('≥tablet') {
+          display: none;
+        }
+      }
     }
   }
 }

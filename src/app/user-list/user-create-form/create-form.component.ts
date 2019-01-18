@@ -45,6 +45,7 @@ export class UserCreateFormComponent {
       newUser.email = loginInfo.email;
       newUser.company = loginInfo.company;
       newUser.registered = new Date();
+      newUser.isActive = true;
 
       this.newUserToSubscribers.emit(new UserModel(newUser));
     } else {
