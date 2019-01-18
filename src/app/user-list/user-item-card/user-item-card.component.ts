@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { UserModel } from "../../../common/models/user/user.model";
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { UserModel } from '../../../common/models/user/user.model';
 
 @Component({
   selector: 'app-user-item-card',

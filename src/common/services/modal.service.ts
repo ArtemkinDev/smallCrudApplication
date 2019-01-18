@@ -39,7 +39,7 @@ export class ModalService {
 
   /**
   * Open success modal
-  * If user doesn't close modal it close after 3 seconds
+  * If user doesn't close modal it close after 5 seconds
   * @param { modalId: string, modalContent?: KeyValueInterface<string>,  }
   * @return { NgbModalRef }
   */
@@ -47,7 +47,7 @@ export class ModalService {
   public openSuccessModal(modalId: string, modalContent?: KeyValueInterface<string>): NgbModalRef {
     const modalRef = this.modalService.open(SuccessModalComponent);
 
-    if(!!modalContent) {
+    if (!!modalContent) {
       modalRef.componentInstance.title = modalContent.title || 'Success!';
       modalRef.componentInstance.body = modalContent.body || 'Success!';
     } else {
@@ -61,7 +61,7 @@ export class ModalService {
       setTimeout(() => {
         this.currentActiveModalState[modalId].close();
         delete this.currentActiveModalState[modalId];
-      }, 3000);
+      }, 5000);
     }
 
     return modalRef;

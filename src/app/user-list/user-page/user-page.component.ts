@@ -1,15 +1,13 @@
 import { UserService } from './../../../common/services/user.service';
 import { Component, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { UserModel } from '../../../common/models/user/user.model';
 import { Subscription } from 'rxjs/Subscription';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss'],
-  providers: [NgbModal]
 })
 
 export class UserPageComponent implements OnDestroy {
@@ -17,14 +15,22 @@ export class UserPageComponent implements OnDestroy {
   public currentUser: UserModel;
   public routerSubscription: Subscription;
 
-  constructor(private router: ActivatedRoute, private userService: UserService) {
-    this.routerSubscription = this.router.params.subscribe(
-      (param: Params) => {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private userService: UserService,
+    private router: Router
+    ) {
+    this.routerSubscription = this.activatedRoute.params.subscribe(
+      (param: Params): void => {
         const id: string = param.id;
 
-        this.userService.getUserById(id).subscribe((user: UserModel) => {
+        this.userService.getUserById(id).subscribe((user: UserModel): void => {
           this.currentUser = user;
-        });
+        },
+        () => {
+          this.router.navigateByUrl('/not-found');
+        }
+        );
       }
     );
   }

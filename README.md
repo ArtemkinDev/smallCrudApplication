@@ -1,10 +1,15 @@
 # SmallCrudApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.7.
-Angular version 5.2.0.
-Css framework - bootstrap v4.2.1
-Icons - font-awesome v4.7.0
-Modules for widgets  - Ng-bootstrap v2.0.0
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.7.  
+
+Angular version 5.2.0.  
+
+Css framework - bootstrap v4.2.1  
+
+Icons - font-awesome v4.7.0  
+
+Modules for widgets  - Ng-bootstrap v2.0.0  
+
 
 ## Project structure
 ### App:

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalService } from '../services/modal.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SuccessModalComponent } from './modal/success-modal/success-modal.component';
@@ -21,6 +21,6 @@ import { SuccessModalComponent } from './modal/success-modal/success-modal.compo
   entryComponents: [
     SuccessModalComponent,
   ],
-  providers: [ ModalService ],
+  providers: [ NgbModal, ModalService ],
 })
 export class SharedModule { }

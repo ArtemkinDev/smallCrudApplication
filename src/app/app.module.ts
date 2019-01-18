@@ -13,13 +13,15 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { UserService } from '../common/services/user.service';
+import { NotFoundComponent } from './not-found-page/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BaseComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

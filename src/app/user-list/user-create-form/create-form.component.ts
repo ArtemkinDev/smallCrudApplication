@@ -34,22 +34,22 @@ export class UserCreateFormComponent {
   public onSubmit() {
     this.submit = true;
 
-    if (!this.createUserForm.invalid) {
-      const loginInfo: KeyValueInterface<string> = this.createUserForm.value;
-
-      const newUser: UserModel = {} as UserModel;
-
-      newUser.id = new Date().getTime().toString();
-      newUser.picture = 'http://placehold.it/32x32';
-      newUser.name = loginInfo.username;
-      newUser.email = loginInfo.email;
-      newUser.company = loginInfo.company;
-      newUser.registered = new Date();
-      newUser.isActive = true;
-
-      this.newUserToSubscribers.emit(new UserModel(newUser));
-    } else {
+    if (this.createUserForm.invalid) {
       return;
     }
+
+    const loginInfo: KeyValueInterface<string> = this.createUserForm.value;
+
+    const newUser: UserModel = {} as UserModel;
+
+    newUser.id = new Date().getTime().toString();
+    newUser.picture = 'http://placehold.it/32x32';
+    newUser.name = loginInfo.username;
+    newUser.email = loginInfo.email;
+    newUser.company = loginInfo.company;
+    newUser.registered = new Date();
+    newUser.isActive = true;
+
+    this.newUserToSubscribers.emit(new UserModel(newUser));
   }
 }

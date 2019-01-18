@@ -52,7 +52,12 @@ export class UserService {
       const userList: KeyValueInterface<any>[] = this.localstorage.get('userList');
       const user: KeyValueInterface<any> =  userList.filter((u: KeyValueInterface<any>) => u.id === id)[0];
 
-      observer.next(UserHelper.CreateUserModelFromLocalStorage(user));
+      if(!!user) {
+        observer.next(UserHelper.CreateUserModelFromLocalStorage(user));
+      } else {
+        observer.error(void 0);
+      };
+
       observer.complete();
     });
   }
